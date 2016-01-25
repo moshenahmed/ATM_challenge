@@ -1,6 +1,6 @@
 class Atm
 
   def withdraw(amount)
-    true
+    amount % 5 == 0
   end
 end
