@@ -9,7 +9,7 @@ describe Atm do
  # for example we are currently only holding 5$ bills [5, 5] = 10$, [5,5,5,5,5] = 25$
  # But in the future implementation we cam have 5, 10 & 20$ bills, then [5,20] = 25$
 
- describe "ATM has sufficient funds" do
+ context "has sufficient funds" do
      before do
         subject.funds = 1000
      end
@@ -31,7 +31,7 @@ describe Atm do
     end
   end
 
-  describe "ATM is out of money" do
+  context "is out of funds" do
      before do
         subject.funds = 0
      end
