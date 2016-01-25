@@ -2,20 +2,22 @@ require './lib/atm.rb'
 
 describe Atm do
 
-    it "respnds to #withdraw method" do
-       expect(subject).to respond_to :withdraw
+
+    
+    it "allows for withdraw of 5$ if pin is okay" do
+       expect(subject.withdraw(5, 1234)).to eq true 
     end
     
-    it "allows for withdraw of 5$" do
-       expect(subject.withdraw(5)).to eq true 
+    it "does not allow for withdraw of 5$ if oin is wrong" do
+       expect(subject.withdraw(5, 4321)).to eq false 
     end
     
     it "does not allow for withdraw of 6$" do
-       expect(subject.withdraw(6)).to eq false 
+       expect(subject.withdraw(6, 1234)).to eq false 
     end
     
     it "does not allow for withdraw of -10$" do
-       expect(subject.withdraw(-10)).to eq 'No negative numbers, please!'
+       expect(subject.withdraw(-10, 1234)).to eq 'No negative numbers, please!'
     end
     
 end
