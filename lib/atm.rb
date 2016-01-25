@@ -1,10 +1,10 @@
 class Atm
 
-  def withdraw(amount)
+  def withdraw(amount, pin)
     case
     when negative_value(amount) then 'No negative numbers, please!'
     else
-      amount % 5 == 0
+      amount % 5 == 0 and check_pin(pin)
     end
   end
 
@@ -12,5 +12,9 @@ class Atm
  
  def negative_value(value)
    value <= 0
+ end
+ 
+ def check_pin(pin)
+   pin == 1234
  end
 end
