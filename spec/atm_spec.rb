@@ -1,7 +1,13 @@
 require './lib/atm.rb'
 
 describe Atm do
-
+ # Check for validity if the card (exp date)
+ # Check for card status :active or :deactivated 
+ # Subtract the withdrawal amount from ATM's availible funds
+ # Handler for a case when user tries to withdra more then ATM is currently holding
+ # Present user with info about what banknotes he recieves 
+ # for example we are currently only holding 5$ bills [5, 5] = 10$, [5,5,5,5,5] = 25$
+ # But in the future implementation we cam have 5, 10 & 20$ bills, then [5,20] = 25$
 
  describe "ATM has sufficient funds" do
      before do
