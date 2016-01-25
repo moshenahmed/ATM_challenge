@@ -10,7 +10,7 @@ describe Atm do
        expect(subject.withdraw(5)).to eq true 
     end
     
-    xit "does not allow for withdraw of 6$" do
+    it "does not allow for withdraw of 6$" do
        expect(subject.withdraw(6)).to eq false 
     end
     

@@ -1,5 +1,6 @@
 class Atm
 
-  def withdraw
+  def withdraw(amount)
+    true
   end
 end
