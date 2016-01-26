@@ -15,23 +15,28 @@ describe Atm do
      end
 
     it "allows for withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234)).to eq 1
+       expect(subject.withdraw(5, 1234, 2020)).to eq 1
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
-       expect(subject.withdraw(5, 4321)).to eq "Wrong pin Brother!"
+       expect(subject.withdraw(5, 4321, 2020)).to eq "Wrong pin Brother!"
     end
 
     it "does not allow for withdraw of 6$ even if pin is okay" do
-       expect(subject.withdraw(6, 1234)).to eq "Please round up to the closest 5"
+       expect(subject.withdraw(6, 1234, 2020)).to eq "Please round up to the closest 5"
+    end
+
+    it "does not allow for withdraw if card is expired" do
+       expect(subject.withdraw(5, 1234, 2015)).to eq "Card is expired, please refer to Bank"
     end
 
     it "does not allow for withdraw of -10$ even if pin is okay" do
-       expect(subject.withdraw(-10, 1234)).to eq 'No negative numbers, please!'
+       expect(subject.withdraw(-10, 1234, 2020)).to eq 'No negative numbers, please!'
     end
 
     it "subtract withdrawal amount from avilable funds" do
-       expect(subject.do_transaction(5)).to eq 995
+       subject.do_transaction(5)
+       expect(subject.funds).to eq 995
     end
   end
 
@@ -42,20 +47,7 @@ describe Atm do
      end
 
     it "rejects withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234)).to eq 'Sorry, withdrawal is not possible.'
+       expect(subject.withdraw(5, 1234, 2020)).to eq 'Sorry, withdrawal is not possible.'
     end
   end
-  
- #Nytt test för att se om den vet hur många sedlar som tas ut
- # describe "let me know how many bills" do
- #   before do
- #      subject.funds = 1000
- #      subject.withdraw(5, 1234)
- #   end
- #   it "tells me how many bills I get" do
- #     expect(@antal).to eq '1'
- #   end
- # end
-
-
 end
