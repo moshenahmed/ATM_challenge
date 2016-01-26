@@ -40,5 +40,17 @@ describe Atm do
        expect(subject.withdraw(5, 1234)).to eq 'Sorry, withdrawal is not possible.'
     end
   end
+  
+ #Nytt test för att se om den vet hur många sedlar som tas ut
+ # describe "let me know how many bills" do
+ #   before do
+ #      subject.funds = 1000
+ #      subject.withdraw(5, 1234)
+ #   end
+ #   it "tells me how many bills I get" do
+ #     expect(@antal).to eq '1'
+ #   end
+ # end
+
 
 end

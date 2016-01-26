@@ -1,21 +1,30 @@
 class Atm
-  attr_accessor :funds
+  attr_accessor :funds, :antal
   #INITIAL_AMOUNT_IN_ATM = 1000
   
   #def initialize
   #  @funds = INITIAL_AMOUNT_IN_ATM
   #end
-
+  
   def withdraw(amount, pin)
-      case
-      when !sufficient_fund_in_atm then 'Sorry, withdrawal is not possible.'
-      when negative_value(amount) then 'No negative numbers, please!'
-      else
+   # @antal=print_billz(amount)
+   #puts "#{@antal} withdrawn bills"
+    case
+    when !sufficient_fund_in_atm then 'Sorry, withdrawal is not possible.'
+    when negative_value(amount) then 'No negative numbers, please!'
+    else
         amount % 5 == 0 and check_pin(pin) 
-      end
+    end
   end
 
+# skriver ut antal uttagna sedlar. 
+#       puts "#{@billz} withdrawn bills"
+
  private
+
+#def print_billz(value) 
+#      @antal = value / 5
+#end
 
  def negative_value(value)
    value <= 0
