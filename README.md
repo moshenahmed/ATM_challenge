@@ -36,7 +36,7 @@ Open up `irb` and run the following commands:
 
 ```irb
 # Withdraw funds from account
-t.get_cash(50, account, atm, 3513) # Make sure to use your own PIN ;-)
+person.get_cash(50, account, atm, 3513) # Make sure to use your own PIN ;-)
  => 50
 2.2.1 :015 > person.cash
  => 50
