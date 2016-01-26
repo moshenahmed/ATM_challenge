@@ -1,3 +1,5 @@
+require 'date'
+
 class Atm
   attr_accessor :funds
   STANDARD_PIN = 1234
@@ -12,16 +14,16 @@ class Atm
     @funds = 1000
    end
 
-   def withdraw(amount, pin, expiry)
+   def withdraw(amount, pin, expiry, account)
       case
       when negative_value(amount) then return_error_message(:negative_amount)
-        when !check_pin(pin) then return_error_message(:wrong_pin)
-        when expiry (expiry) then return_error_message(:card_expired)
+      when !check_pin(pin, account.pin) then return_error_message(:wrong_pin)
+      when check_expiry(expiry, account.exp_date) then return_error_message(:card_expired)
         when !sufficient_fund_in_atm(amount) then return_error_message (:no_sufficient_fund)
         when amount % 5 != 0 then return_error_message (:non_rounded_amount)
 
         else
-          do_transaction(amount)
+          do_transaction(amount, account)
           respons = { status: true,
             message: :success,
             date: Date.today.strftime("%F"),
@@ -36,22 +38,23 @@ class Atm
      amount / 5
  end
 
- def do_transaction(amount)
+ def do_transaction(amount, account)
    @funds = @funds - amount
+   account.balance = account.balance - amount
  end
 
 
 private
- def expiry(date)
-    date != STANDARD_EXP_DATE
+ def check_expiry(date, actual_exp_date)
+    date != actual_exp_date
 end
 
  def negative_value(value)
    value <= 0
  end
 
- def check_pin(pin)
-   pin == STANDARD_PIN
+ def check_pin(pin, actual_pin)
+   pin == actual_pin
  end
 
  def sufficient_fund_in_atm(amount)
