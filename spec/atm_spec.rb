@@ -31,7 +31,7 @@ describe Atm do
     end
 
     it "subtract withdrawal amount from avilable funds" do
-       expect(subject.do_transaction(5)).to eq @funds
+       expect(subject.do_transaction(5)).to eq 995
     end
   end
 

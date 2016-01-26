@@ -19,18 +19,20 @@ class Atm
         when amount % 5 != 0 then 'Please round up to the closest 5'
         else
            do_transaction(amount)
+           do_bill_count(amount)
      end
    end
 
+ def do_bill_count(amount)
+     amount / 5
+ end
+
  def do_transaction(amount)
    @funds = @funds - amount
-   amount / 5
  end
- 
- private
 
 
-
+private
 
  def negative_value(value)
    value <= 0
