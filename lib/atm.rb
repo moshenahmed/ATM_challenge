@@ -2,27 +2,23 @@ class Atm
   attr_accessor :funds
   #INITIAL_AMOUNT_IN_ATM = 1000
 
-  def initialize
+   def initialize
     @funds = 1000
-  end
+   end
 
-  def remaining_available_funds(amount)
-    @@funds = @funds - amount
-  end
-
-  def withdraw(amount, pin)
+   def withdraw(amount, pin)
       case
         when !sufficient_fund_in_atm then 'Sorry, withdrawal is not possible.'
         when negative_value(amount) then 'No negative numbers, please!'
-       else
-         amount % 5 == 0 and check_pin(pin) #then  @@funds = @funds - amount
+         else
+           amount % 5 == 0 and check_pin(pin) #then  @@funds = @funds - amount
          #update @@funds = @funds - amount
-      end
+     end
+   end
 
-#  def remaining_available_funds(amount)
-#       each.withdraw
-#      end
-  end
+   def remaining_available_funds(amount, pin)
+     @@funds = @funds - amount
+   end
 
 
 

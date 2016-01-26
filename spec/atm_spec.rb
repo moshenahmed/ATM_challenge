@@ -31,7 +31,7 @@ describe Atm do
     end
 
     it "subtract withdrawal amount from avilable funds" do
-       expect(remaining_available_funds(5, 1234)).to eq 995
+       expect(subject.remaining_available_funds(5, 1234)).to eq 995
     end
   end
 
