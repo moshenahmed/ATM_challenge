@@ -15,11 +15,19 @@ describe Atm do
      end
 
     it "allows for withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234, "10/17")).to eq 1
+       output = { status: true,
+         message: 'success',
+         date: Date.today.strftime("%F"),
+         amount: 5,
+         bills: 1}
+       expect(subject.withdraw(5, 1234, "10/17")).to eq output
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
-       expect(subject.withdraw(5, 4321, "10/17")).to eq "Wrong pin Brother!"
+       output = { status: false,
+         message: 'wrong pin',
+         date: Date.today.strftime("%F")}
+       expect(subject.withdraw(5, 4321, "10/17")).to eq output
     end
 
     it "does not allow for withdraw of 6$ even if pin is okay" do
