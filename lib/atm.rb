@@ -14,16 +14,16 @@ class Atm
 
    def withdraw(amount, pin, expiry)
       case
-        when negative_value(amount) then 'No negative numbers, please!'
-        when !check_pin(pin) then return_error_message('wrong pin')
-        when expiry (expiry) then 'Card is expired, please refer to Bank'
-        when !sufficient_fund_in_atm(amount) then 'Sorry, withdrawal is not possible.'
-        when amount % 5 != 0 then 'Please round up to the closest 5'
+      when negative_value(amount) then return_error_message(:negative_amount)
+        when !check_pin(pin) then return_error_message(:wrong_pin)
+        when expiry (expiry) then return_error_message(:card_expired)
+        when !sufficient_fund_in_atm(amount) then return_error_message (:no_sufficient_fund)
+        when amount % 5 != 0 then return_error_message (:non_rounded_amount)
 
         else
           do_transaction(amount)
           respons = { status: true,
-            message: 'success',
+            message: :success,
             date: Date.today.strftime("%F"),
             amount: amount,
             bills: do_bill_count(amount)}
