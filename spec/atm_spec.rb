@@ -29,7 +29,12 @@ describe Atm do
     it "does not allow for withdraw of -10$ even if pin is okay" do
        expect(subject.withdraw(-10, 1234)).to eq 'No negative numbers, please!'
     end
+
+    it "subtract withdrawal amount from avilable funds" do
+       expect(subject.remaining_available_funds(5, 1234)).to eq 995
+    end
   end
+
 
   context "is out of funds" do
      before do
