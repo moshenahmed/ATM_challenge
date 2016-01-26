@@ -10,19 +10,20 @@ class Atm
       case
         when !sufficient_fund_in_atm then 'Sorry, withdrawal is not possible.'
         when negative_value(amount) then 'No negative numbers, please!'
-         else
-           amount % 5 == 0 and check_pin(pin) #then  @@funds = @funds - amount
-         #update @@funds = @funds - amount
+        when !check_pin(pin) then 'Wrong pin Brother!'
+        when amount % 5 != 0 then 'Please round up to the closest 5'
+        else
+           do_transaction(amount)
      end
    end
 
-   def remaining_available_funds(amount, pin)
-     @@funds = @funds - amount
-   end
-
-
 
  private
+
+ def do_transaction(amount)
+   @funds = @funds - amount
+   amount / 5
+ end
 
  def negative_value(value)
    value <= 0
