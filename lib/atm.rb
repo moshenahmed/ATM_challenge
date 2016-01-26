@@ -1,6 +1,7 @@
 class Atm
-  attr_accessor :funds, :antal
-  #INITIAL_AMOUNT_IN_ATM = 1000
+  attr_accessor :funds
+  STANDARD_PIN = 1234
+  STANDARD_EXP_DATE = "10/17"
 
   #def initialize
   #  @funds = INITIAL_AMOUNT_IN_ATM
@@ -13,10 +14,10 @@ class Atm
 
    def withdraw(amount, pin, expiry)
       case
-        when !sufficient_fund_in_atm then 'Sorry, withdrawal is not possible.'
         when negative_value(amount) then 'No negative numbers, please!'
         when !check_pin(pin) then 'Wrong pin Brother!'
         when expiry (expiry) then 'Card is expired, please refer to Bank'
+        when !sufficient_fund_in_atm(amount) then 'Sorry, withdrawal is not possible.'
         when amount % 5 != 0 then 'Please round up to the closest 5'
 
         else
@@ -36,7 +37,7 @@ class Atm
 
 private
  def expiry(date)
-    date != 2020
+    date != STANDARD_EXP_DATE
 end
 
  def negative_value(value)
@@ -44,11 +45,11 @@ end
  end
 
  def check_pin(pin)
-   pin == 1234
+   pin == STANDARD_PIN
  end
 
- def sufficient_fund_in_atm
-   @funds > 0
+ def sufficient_fund_in_atm(amount)
+   @funds > amount
  end
 
 end

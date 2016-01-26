@@ -11,27 +11,27 @@ describe Atm do
 
  context "has sufficient funds" do
      before do
-        subject.funds = 1000
+        #subject.funds = 1000
      end
 
     it "allows for withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234, 2020)).to eq 1
+       expect(subject.withdraw(5, 1234, "10/17")).to eq 1
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
-       expect(subject.withdraw(5, 4321, 2020)).to eq "Wrong pin Brother!"
+       expect(subject.withdraw(5, 4321, "10/17")).to eq "Wrong pin Brother!"
     end
 
     it "does not allow for withdraw of 6$ even if pin is okay" do
-       expect(subject.withdraw(6, 1234, 2020)).to eq "Please round up to the closest 5"
+       expect(subject.withdraw(6, 1234, "10/17")).to eq "Please round up to the closest 5"
     end
 
     it "does not allow for withdraw if card is expired" do
-       expect(subject.withdraw(5, 1234, 2015)).to eq "Card is expired, please refer to Bank"
+       expect(subject.withdraw(5, 1234, "10/16")).to eq "Card is expired, please refer to Bank"
     end
 
     it "does not allow for withdraw of -10$ even if pin is okay" do
-       expect(subject.withdraw(-10, 1234, 2020)).to eq 'No negative numbers, please!'
+       expect(subject.withdraw(-10, 1234, "10/17")).to eq 'No negative numbers, please!'
     end
 
     it "subtract withdrawal amount from avilable funds" do
@@ -47,7 +47,17 @@ describe Atm do
      end
 
     it "rejects withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234, 2020)).to eq 'Sorry, withdrawal is not possible.'
+       expect(subject.withdraw(5, 1234, "10/17")).to eq 'Sorry, withdrawal is not possible.'
+    end
+  end
+
+  context "don't have enough funds" do
+     before do
+        subject.funds = 25
+     end
+
+    it "rejects withdraw of 30$ if funds are 25$" do
+       expect(subject.withdraw(30, 1234, "10/17")).to eq 'Sorry, withdrawal is not possible.'
     end
   end
 end
