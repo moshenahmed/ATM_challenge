@@ -19,18 +19,16 @@ class Atm
       when negative_value(amount) then return_error_message(:negative_amount)
       when !check_pin(pin, account.pin) then return_error_message(:wrong_pin)
       when check_expiry(expiry, account.exp_date) then return_error_message(:card_expired)
-        when !sufficient_fund_in_atm(amount) then return_error_message (:no_sufficient_fund)
-        when amount % 5 != 0 then return_error_message (:non_rounded_amount)
+      when !sufficient_fund_in_atm(amount) then return_error_message (:no_sufficient_fund)
+      when amount % 5 != 0 then return_error_message (:non_rounded_amount)
 
-        else
-          do_transaction(amount, account)
-          respons = { status: true,
-            message: :success,
-            date: Date.today.strftime("%F"),
-            amount: amount,
-            bills: do_bill_count(amount)}
-
-           #do_bill_count(amount)
+      else
+        do_transaction(amount, account)
+        respons = { status: true,
+          message: :success,
+          date: Date.today.strftime("%F"),
+          amount: amount,
+          bills: do_bill_count(amount)}
      end
    end
 
@@ -47,7 +45,7 @@ class Atm
 private
  def check_expiry(date, actual_exp_date)
     date != actual_exp_date
-end
+ end
 
  def negative_value(value)
    value <= 0

@@ -1,4 +1,6 @@
 require './lib/atm.rb'
+require './lib/person.rb'
+require './lib/account.rb'
 
 describe Atm do
  # Check for validity if the card (exp date)
@@ -8,6 +10,11 @@ describe Atm do
  # Present user with info about what banknotes he recieves
  # for example we are currently only holding 5$ bills [5, 5] = 10$, [5,5,5,5,5] = 25$
  # But in the future implementation we cam have 5, 10 & 20$ bills, then [5,20] = 25$
+
+ before do
+   @person = Person.new('The guy')
+   @account = Account.new(holder: @person, balance: 100)
+ end
 
  context "has sufficient funds" do
      before do
@@ -20,7 +27,7 @@ describe Atm do
          date: Date.today.strftime("%F"),
          amount: 5,
          bills: 1}
-       expect(subject.withdraw(5, 1234, "10/17")).to eq output
+       expect(subject.withdraw(5, @account.pin, @account.exp_date, @account)).to eq output
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
@@ -41,7 +48,7 @@ describe Atm do
       output = { status: false,
         message: :card_expired,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(5, 1234, "10/16")).to eq output 
+       expect(subject.withdraw(5, 1234, "10/16")).to eq output
     end
 
     it "does not allow for withdraw of -10$ even if pin is okay" do
