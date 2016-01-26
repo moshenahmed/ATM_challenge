@@ -15,15 +15,15 @@ describe Atm do
      end
 
     it "allows for withdraw of 5$ if pin is okay" do
-       expect(subject.withdraw(5, 1234)).to eq true
+       expect(subject.withdraw(5, 1234)).to eq 1
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
-       expect(subject.withdraw(5, 4321)).to eq false
+       expect(subject.withdraw(5, 4321)).to eq "Wrong pin Brother!"
     end
 
     it "does not allow for withdraw of 6$ even if pin is okay" do
-       expect(subject.withdraw(6, 1234)).to eq false
+       expect(subject.withdraw(6, 1234)).to eq "Please round up to the closest 5"
     end
 
     it "does not allow for withdraw of -10$ even if pin is okay" do
@@ -31,7 +31,7 @@ describe Atm do
     end
 
     it "subtract withdrawal amount from avilable funds" do
-       expect(subject.remaining_available_funds(5, 1234)).to eq 995
+       expect(subject.do_transaction(5)).to eq @funds
     end
   end
 
