@@ -21,45 +21,46 @@ describe Atm do
         #subject.funds = 1000
      end
 
-    it "allows for withdraw of 5$ if pin is okay" do
+   it "allows for withdraw of 5$ if pin is okay" do
        output = { status: true,
          message: :success,
          date: Date.today.strftime("%F"),
          amount: 5,
-         bills: 1}
+         bills: 1
+         }
        expect(subject.withdraw(5, @account.pin, @account.exp_date, @account)).to eq output
     end
 
     it "does not allow for withdraw of 5$ if pin is wrong" do
        output = { status: false,
          message: :wrong_pin,
-         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(5, 4321, "10/17")).to eq output
+       date: Date.today.strftime("%F")}
+       expect(subject.withdraw(5, 9999, @account.exp_date, @account)).to eq output
     end
 
     it "does not allow for withdraw of 6$ even if pin is okay" do
       output = { status: false,
         message: :non_rounded_amount,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(6, 1234, "10/17")).to eq output
+       expect(subject.withdraw(6, @account.pin, @account.exp_date, @account)).to eq output
     end
 
     it "does not allow for withdraw if card is expired" do
       output = { status: false,
         message: :card_expired,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(5, 1234, "10/16")).to eq output
+       expect(subject.withdraw(6, @account.pin, "02/09", @account)).to eq output
     end
 
     it "does not allow for withdraw of -10$ even if pin is okay" do
       output = { status: false,
         message: :negative_amount,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(-10, 1234, "10/17")).to eq output
+       expect(subject.withdraw(-10, @account.pin, @account.exp_date, @account)).to eq output
     end
 
     it "subtract withdrawal amount from avilable funds" do
-       subject.do_transaction(5)
+       subject.do_transaction(5,@account)
        expect(subject.funds).to eq 995
     end
   end
@@ -74,7 +75,7 @@ describe Atm do
       output = { status: false,
         message: :no_sufficient_fund,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(5, 1234, "10/17")).to eq output
+       expect(subject.withdraw(5, @account.pin, @account.exp_date, @account)).to eq output
     end
   end
 
@@ -87,7 +88,7 @@ describe Atm do
       output = { status: false,
         message: :no_sufficient_fund,
         date: Date.today.strftime("%F")}
-       expect(subject.withdraw(30, 1234, "10/17")).to eq output
+       expect(subject.withdraw(30, @account.pin, @account.exp_date, @account)).to eq output
 
     end
   end

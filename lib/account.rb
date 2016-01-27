@@ -8,8 +8,15 @@ class Account
     @pin = generate_pin
   end
 
-  def deposit(amount)
-    @balance = @balance + amount
+# TODO should we write tests for validating initial account ? like same name ? initial balance
+
+
+  def deposit(amount) #TODO shouldnt include @account ?
+    @balance += amount
+  end
+
+  def atm_withdraw(amount)
+    @balance -= amount
   end
 
   private
