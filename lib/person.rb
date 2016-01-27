@@ -11,10 +11,10 @@ class Person
 
   def create_account
     @accounts << Account.new(holder: self)
-  end
+    end
 
   def get_cash(amount, account, atm, pin)
     atm.withdraw(amount, pin, account.exp_date, account)
-    @cash = @cash + amount
+    @cash += amount
   end
 end
