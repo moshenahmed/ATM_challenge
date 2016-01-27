@@ -3,13 +3,20 @@ class Account
 
   def initialize(options={})
     @holder = options[:holder]
+    if options[:holder].class == Person
+      options[:holder].accounts.push self
+    end
     @balance = options[:balance] || 0
     @exp_date = set_exp_date
     @pin = generate_pin
   end
 
-  def deposit(amount)
-    @balance = @balance + amount
+  def deposit(amount) #TODO shouldnt include @account ?
+    @balance += amount
+  end
+
+  def atm_withdraw(amount)
+    @balance -= amount
   end
 
   private
