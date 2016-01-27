@@ -9,8 +9,8 @@ class Person
     @accounts = []
   end
 
-  def create_account
-    @accounts << Account.new(holder: self)
+  def create_account(account_class)
+    account_class.new(holder: self)
     end
 
   def get_cash(amount, account, atm, pin)
