@@ -1,25 +1,23 @@
-equire './lib/atm.rb'
+require './lib/atm.rb'
 require './lib/person.rb'
 require './lib/account.rb'
 
 describe Person do
-# before do
-#    @person = Person.new('The guy')
-#    @account = Account.new(holder: @person, balance: 100)
-#    @balance = Account.balance
-#  end
+ subject { Person.new('Random')}
 
-#  it 'creat new account under specific input' do
-#    expect(subject.initialize(@person, @account.exp_date, @person.balance, @account.pin)).to eq ('The guy', "10/17", 100, @account.pin)
-#  end
+ before do
+   Account.new(holder: subject, balance: 100)
+   @atm = Atm.new
+  end
 
   it 'add money to person account ' do
-    subject.deposit(500)
-    expect(subject.balance).to eq 500
+    subject.accounts[0].deposit(500)
+    #@account.deposit(500) is another way to do it 
+    expect(subject.accounts[0].balance).to eq 600
   end
 
   it 'deduct money when atm withdraw from balance' do
-    subject.atm_withdraw(40)
-    expect(subject.balance).to eq -40
+    subject.get_cash(40, subject.accounts[0], @atm, subject.accounts[0].pin)
+    expect(subject.accounts[0].balance).to eq 60
   end
 end

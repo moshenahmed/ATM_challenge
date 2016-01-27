@@ -5,11 +5,6 @@ class Atm
   STANDARD_PIN = 1234
   STANDARD_EXP_DATE = "10/17"
 
-  #def initialize
-  #  @funds = INITIAL_AMOUNT_IN_ATM
-  #end
-
-
    def initialize
     @funds = 1000
    end

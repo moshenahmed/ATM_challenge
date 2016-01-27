@@ -3,15 +3,19 @@ require './lib/person.rb'
 require './lib/account.rb'
 
 describe Account do
-# before do
-#    @person = Person.new('The guy')
-#    @account = Account.new(holder: @person, balance: 100)
-#    @balance = Account.balance
-#  end
 
-#  it 'creat new account under specific input' do
-#    expect(subject.initialize(@person, @account.exp_date, @person.balance, @account.pin)).to eq ('The guy', "10/17", 100, @account.pin)
-#  end
+ before do
+    @person = Person.new('The guy')
+    @subject_2 = Account.new(holder: @person, balance: 100)
+  end
+
+  it 'expect new account holder name to be The guy' do
+    expect(@subject_2.holder).to eq @person
+  end
+
+  it 'expect new account initial balance to be 100' do
+    expect(@subject_2.balance).to eq 100
+  end
 
   it 'add money to person account ' do
     subject.deposit(500)
@@ -23,5 +27,3 @@ describe Account do
     expect(subject.balance).to eq -40
   end
 end
-
-#TODO trial for SSH 

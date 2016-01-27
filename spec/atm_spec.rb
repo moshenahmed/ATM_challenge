@@ -17,9 +17,9 @@ describe Atm do
  end
 
  context "has sufficient funds" do
-     before do
-        #subject.funds = 1000
-     end
+   before do
+      subject.funds = 1000
+   end
 
    it "allows for withdraw of 5$ if pin is okay" do
        output = { status: true,
@@ -67,9 +67,9 @@ describe Atm do
 
 
   context "is out of funds" do
-     before do
-        subject.funds = 0
-     end
+    before do
+       subject.funds = 0
+    end
 
     it "rejects withdraw of 5$ if pin is okay" do
       output = { status: false,

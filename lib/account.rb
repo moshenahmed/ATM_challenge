@@ -3,13 +3,13 @@ class Account
 
   def initialize(options={})
     @holder = options[:holder]
+    if options[:holder].class == Person
+      options[:holder].accounts.push self
+    end
     @balance = options[:balance] || 0
     @exp_date = set_exp_date
     @pin = generate_pin
   end
-
-# TODO should we write tests for validating initial account ? like same name ? initial balance
-
 
   def deposit(amount) #TODO shouldnt include @account ?
     @balance += amount
