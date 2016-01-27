@@ -1,20 +1,17 @@
-require './lib/atm.rb'
-require './lib/person.rb'
 require './lib/account.rb'
 
 describe Account do
+  
+  let(:person) { double(:person, accounts: []) }
+  let(:subject_2) { described_class.new(holder: person, balance: 100) }
 
- before do
-    @person = Person.new('The guy')
-    @subject_2 = Account.new(holder: @person, balance: 100)
-  end
 
   it 'expect new account holder name to be The guy' do
-    expect(@subject_2.holder).to eq @person
+    expect(subject_2.holder).to eq person
   end
 
   it 'expect new account initial balance to be 100' do
-    expect(@subject_2.balance).to eq 100
+    expect(subject_2.balance).to eq 100
   end
 
   it 'add money to person account ' do

@@ -3,7 +3,7 @@ class Account
 
   def initialize(options={})
     @holder = options[:holder]
-    if options[:holder].class == Person
+    if options[:holder].respond_to?(:accounts)
       options[:holder].accounts.push self
     end
     @balance = options[:balance] || 0

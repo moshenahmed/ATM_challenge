@@ -12,7 +12,7 @@ describe Person do
 
   it 'add money to person account ' do
     subject.accounts[0].deposit(500)
-    #@account.deposit(500) is another way to do it 
+    #@account.deposit(500) is another way to do it
     expect(subject.accounts[0].balance).to eq 600
   end
 
