@@ -1,15 +1,6 @@
 require './lib/atm.rb'
-# require './lib/person.rb'
-# require './lib/account.rb'
 
 describe Atm do
-  # Check for validity if the card (exp date)
-  # Check for card status :active or :deactivated
-  # Subtract the withdrawal amount from ATM's availible funds
-  # Handler for a case when user tries to withdraw more then ATM is currently holding
-  # Present user with info about what banknotes he recieves
-  # for example we are currently only holding 5$ bills [5, 5] = 10$, [5,5,5,5,5] = 25$
-  # But in the future implementation we cam have 5, 10 & 20$ bills, then [5,20] = 25$
 
   let(:person) { double(:person) }
   let(:account) { double(:account, holder: person, pin: 1234, exp_date: '10/17', balance: 100) }
@@ -30,7 +21,6 @@ describe Atm do
                  amount: 5,
                  bills: 1
         }
-      # binding.pry
       expect(subject.withdraw(5, account.pin, account.exp_date, account)).to eq output
     end
 
