@@ -46,3 +46,11 @@ person.get_cash(50, account, atm, 3513) # Make sure to use your own PIN ;-)
  2.2.1 :017 > atm.funds
 => 950
 ```
+
+## Tips and Tricks
+
+- Don't overdo it. Keep your implementation as simple as possible.
+- Test your code - both manually in IRB but, most importantly with automated tests.
+- You have to examine all tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
+- **Run one test at the time to avoid a massive output in your terminal. Disable it blocks by adding  an `x` before (as in `xit "Should..." do`)
+
