@@ -2,7 +2,7 @@
 
 This is the week 1 challenge of the Craft Academy Bootcamp. The challenge is to simulate an ATM-machine. Ruby will be the main programing language to use
 
-**We have set up a series of test (see the `spec` folder)  and your task is to make them all pass. You will be working with your Coach and your peers to get started with using RSpec as a testing framework an with implementing your code.
+**We have set up a series of test (see the `spec` folder)  and your task is to make them all pass. You will be working with your Coach and your peers to get started with using RSpec as a testing framework an with implementing your code.**
 
 
 ### Usage
