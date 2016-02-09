@@ -2,11 +2,10 @@ require './spec/person_spec.rb'
 
 class Person
     
-Person = Person. new
+person = person.new()
 
 def initialize(name)
     
     @Person=name
 end
-
 end
