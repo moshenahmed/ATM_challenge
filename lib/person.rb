@@ -1,8 +1,7 @@
-require './spec/person_spec.rb'
 
 class Person
     
-person = person.new()
+person = person.new
 
 def initialize(name)
     
