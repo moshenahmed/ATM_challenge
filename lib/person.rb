@@ -1,10 +1,6 @@
 
 class Person
     
-person = person.new
+attr_accessor :name
+end
 
-def initialize(name)
-    
-    @Person=name
-end
-end
