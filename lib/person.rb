@@ -1,7 +1,14 @@
 
 class Person
-    attr_accessor :name
-end
+    attr_accessor :name, :accounts
 
-person = Person.new
-person.name = "Moshen"
+    def initialize(name)
+      @name = name
+      @accounts = []
+    end
+
+    def create_account(type)
+      account = type.new(self)
+      @accounts << account
+    end
+end

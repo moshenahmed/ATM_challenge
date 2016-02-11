@@ -1,7 +1,8 @@
 require './lib/person.rb'
+require './lib/account.rb'
 
 describe Person do
- subject { described_class.new('Random') }
+ subject { described_class.new('Thomas', balance: 50) }
  let(:account) { double('Account', holder: subject, balance: 100, pin: 1234, exp_date: "10/17") }
  let(:atm) { double(:atm) }
 
@@ -10,11 +11,11 @@ describe Person do
    allow(atm).to receive(:withdraw)
  end
 
- xit 'should have access to the account information' do
+ it 'should have access to the account information' do
    expect(subject.accounts[0]).to equal account
  end
 
- xit 'should be able to create a new account' do
+ it 'should be able to create a new account' do
    subject.create_account(Account)
    expect(subject.accounts[1]).to be_kind_of Account
  end

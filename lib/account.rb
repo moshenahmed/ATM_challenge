@@ -1,7 +1,7 @@
 class Account
-    
-    def initialize(person, balance)
-    @holder=person
-    @cash=balance
-end
+
+    def initialize(person, options={})
+      @holder = person
+      @balance = options[:balance] || 0
+    end
 end
