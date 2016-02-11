@@ -2,7 +2,7 @@ require './lib/person.rb'
 require './lib/account.rb'
 
 describe Person do
- subject { described_class.new('Thomas', balance: 50) }
+ subject { described_class.new('Thomas') }
  let(:account) { double('Account', holder: subject, balance: 100, pin: 1234, exp_date: "10/17") }
  let(:atm) { double(:atm) }
 
@@ -20,7 +20,7 @@ describe Person do
    expect(subject.accounts[1]).to be_kind_of Account
  end
 
- xit 'add withdrawn funds to @cash' do
+ it 'add withdrawn funds to @cash' do
    subject.get_cash(40, account, atm, account.pin)
    expect(subject.cash).to eq 40
  end
