@@ -14,4 +14,8 @@ class Person
 
   def get_cash (cash , account, atm, account_pin)
   end
+
+  def cash
+    @cash = 40
+  end
 end
