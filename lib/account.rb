@@ -4,4 +4,7 @@ class Account
       @holder = person
       @balance = options[:balance] || 0
     end
+
+    def holder
+    end
 end

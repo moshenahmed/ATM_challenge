@@ -4,7 +4,7 @@ describe Account do
   let(:person) { double(:person, accounts: []) }
   let(:subject_2) { described_class.new(holder: person, balance: 100) }
 
-  xit 'expect new account holder name to be The guy' do
+  it 'expect new account holder name to be The guy' do
     expect(subject_2.holder).to eq person
   end
 
