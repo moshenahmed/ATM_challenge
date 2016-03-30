@@ -9,11 +9,11 @@ describe Account do
     subject_2.holder == double()
   end
 
-  xit 'expect new account initial balance to be 100' do
+  it 'expect new account initial balance to be 100' do
     expect(subject_2.balance).to eq 100
   end
 
-  xit 'add money to person account ' do
+  it 'add money to person account ' do
     subject.deposit(500)
     expect(subject.balance).to eq 500
   end
