@@ -12,6 +12,6 @@ class Account
     end
     def deposit(deposit)
   end
-  def atm_withdraw(atm_withdraw)
+  def atm_withdraw
 end
 end

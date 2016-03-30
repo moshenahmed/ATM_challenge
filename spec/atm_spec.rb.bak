@@ -80,7 +80,7 @@ describe Atm do
       output = { status: false,
                  message: :no_sufficient_fund,
                  date: Date.today.strftime('%F') }
-      expect(subject.withdraw(30, account.pin, account.exp_date, account))== output
+      expect(subject.withdraw(30, account.pin, account.exp_date, account)).to eq output
     end
   end
 end

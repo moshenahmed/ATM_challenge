@@ -8,7 +8,7 @@ end
 def withdraw(amount, pin, exp_date, account)
 end
 
-def do_transaction(amount, account)
+def do_transaction
 end
 
 end
