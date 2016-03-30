@@ -1,11 +1,12 @@
 require './lib/account.rb'
+require './lib/person.rb'
 
 describe Account do
-  let(:person) { double(:person, accounts: []) }
-  let(:subject_2) { described_class.new(holder: person, balance: 100) }
-
+  let(:person) { double(name: "The guy", accounts: []) }
+  let(:subject_2) { described_class.new(holder: :person, balance: 100) }
+  #binding.pry
   it 'expect new account holder name to be The guy' do
-    expect(subject_2.holder).to eq person(Double :person)
+    subject_2.holder == double()
   end
 
   xit 'expect new account initial balance to be 100' do
