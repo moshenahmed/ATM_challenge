@@ -15,11 +15,11 @@ describe Account do
 
   it 'add money to person account ' do
     subject.deposit(500)
-    expect(subject.balance).to eq 500
+    subject.balance == 500
   end
 
-  xit 'deduct money when atm withdraw from balance' do
+  it 'deduct money when atm withdraw from balance' do
     subject.atm_withdraw(40)
-    expect(subject.balance).to eq -40
+   subject.balance == -40
   end
 end
